@@ -1,1 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
+
+$theme: (
+  'primary': #00bbe1,
+  'success': #08ce6e,
+  'danger': #dc3545,
+  'warning': #ffc107,
+  'dark': #374352
+);
+.alert{
+    display: block;
+    width: 350px;
+    border-radius: 15px;
+    border: 1px solid;
+    background-color: lightgrey;
+    border-color: darkgrey;
+    margin: 15px;
+    padding: 10px;
+    font-family: Helvetica, sans-serif;
+
+
+    &__heading{
+        font-size: 18;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    &__body{
+        font-size: 12;
+    }
+
+    @each $class in map-keys($theme) {
+        &--#{$class} {
+          background-color: rgba(map-get($theme, #{$class}), 0.1) !important;
+          // color: map-get($theme, #{$class});
+          border-color: map-get($theme, #{$class});
+
+         .alert{
+             &__heading{
+                 color: map-get($theme, #{$class});
+             }
+             &__body{
+                 color: rgba(map-get($theme, 'dark'), 0.7);
+             }
+         }
+        }
+      }
+}
