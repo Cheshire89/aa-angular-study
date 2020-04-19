@@ -15,7 +15,7 @@
         <div class="col-6">
             <div class="row">
                 <div class="col-12" *ngFor="let logItem of clickTrackingArr; let i = index">
-                    <p [ngClass]="{'bg-success': i > 3}" [ngStyle]="{'color': i > 3 ? '#fff' : '#000'}">{{ logItem }}</p>
+                    <p [ngClass]="{'bg-primary': i > 3}" [ngStyle]="{'color': i > 3 ? '#fff' : '#000'}">{{ logItem }}</p>
                 </div>
             </div>
         </div>
