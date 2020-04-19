@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-6">
+            <button type="button" class="btn btn-primary" (click)="toggleDetails()">Display Details</button>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4" *ngIf="displayDetails">
+        <div class="col-6">
+            <p>Secret Password = <strong>&quot;Tuna&quot;</strong></p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4" *ngIf="clickTrackingArr.length > 0">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12" *ngFor="let logItem of clickTrackingArr; let i = index">
+                    <p [ngClass]="{'bg-success': i > 3}" [ngStyle]="{'color': i > 3 ? '#fff' : '#000'}">{{ logItem }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

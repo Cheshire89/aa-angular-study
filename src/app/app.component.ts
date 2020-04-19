@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: []
 })
 export class AppComponent {
-  title = 'aa-angular-study';
+  displayDetails = false;
+  clickTrackingArr: string[] = [];
+
+  toggleDetails(){
+    this.displayDetails = !this.displayDetails;
+    this.clickTrackingArr.push(`The display details is now: ${this.displayDetails ? 'on' : 'off'}. ${Date.now()}`);
+  }
 }
