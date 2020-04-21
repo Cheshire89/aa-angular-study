@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-6">
+            <h4>Number of times [UserService] was called: {{clickCount}}</h4>
+        </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        <div class="col-6">
+            <h4> Active Users</h4>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let user of filterUsers(true)">
+                    <div class="user d-flex justify-content-between align-items-center">
+                        <div class="user__name">
+                            {{ user.name }}
+                        </div>
+
+                        <div class="user__status">
+                            <span class="text-success" *ngIf="user.active">Active</span>
+                            <span class="text-danger" *ngIf="!user.active">Disabled</span>
+                        </div>
+
+                        <div class="user__actions">
+                            <span *ngIf="!user.active" (click)="onActivateUser(user.id)"> + </span>
+                            <span *ngIf="user.active" (click)="onDeactivate(user.id)"> - </span>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        <div class="col-6">
+            <h4>Disabled Users</h4>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let user of filterUsers(false)">
+                    <div class="user d-flex justify-content-between align-items-center">
+                        <div class="user__name">
+                            {{ user.name }}
+                        </div>
+
+                        <div class="user__status">
+                            <span class="text-success" *ngIf="user.active">Active</span>
+                            <span class="text-danger" *ngIf="!user.active">Disabled</span>
+                        </div>
+
+                        <div class="user__actions">
+                            <span *ngIf="!user.active" (click)="onActivateUser(user.id)"> + </span>
+                            <span *ngIf="user.active" (click)="onDeactivate(user.id)"> - </span>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
