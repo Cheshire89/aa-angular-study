@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row justify-content-center my-5">
+    <div class="col-6">
+      <div class="row mb-3">
+        <div class="col-12">
+          <h2>User Form</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form
+            class="form-horizontal"
+            [ngClass]="{ 'was-validated': userForm.submitted }"
+            #userForm="ngForm"
+            novalidate
+            (onSubmit)="onSubmitForm(user)"
+          >
+            <div class="form-group">
+              <label for="userEmail" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                name="userEmail"
+                #userEmail="ngModel"
+                [(ngModel)]="user.email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                required
+              />
+              <div *ngIf="userEmail.errors">
+                <div *ngIf="userEmail.errors.required" class="invalid-feedback">
+                  Required
+                </div>
+                <div *ngIf="userEmail.errors.pattern" class="invalid-feedback">
+                  Please enter valid email
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="userPassword" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                name="userPassword"
+                #userPassword="ngModel"
+                [(ngModel)]="user.password"
+                minlength="5"
+                maxlength="25"
+                required
+              />
+              <div *ngIf="userPassword.errors">
+                <div *ngIf="userPassword.errors.required" class="invalid-feedback">
+                  Required
+                </div>
+                <div *ngIf="userPassword.errors.minlength" class="invalid-feedback">
+                  Minimum length 5 characters
+                </div>
+                <div *ngIf="userPassword.errors.maxlength" class="invalid-feedback">
+                  Maximum length 25 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="userPlan" class="form-label">Plan</label>
+              <select
+                class="form-control"
+                name="userPlan"
+                #userPlan="ngModel"
+                [(ngModel)]="user.plan"
+                required
+              >
+                <option value="basic">Basic</option>
+                <option value="advanced">Advanced</option>
+                <option value="pro">Pro</option>
+              </select>
+              <div *ngIf="userPlan.errors">
+                <div *ngIf="userPlan.errors.required" class="invalid-feedback">
+                  Required
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-5" *ngIf="userForm.submitted && userForm.valid">
+    <div class="col-6">
+      <div class="row mb-3">
+        <div class="col-12">
+          <h2>Your user details</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 mb-1">{{ user.email }}</div>
+        <div class="col-12 mb-1">{{ user.password }}</div>
+        <div class="col-12 mb-1">{{ user.plan }}</div>
+      </div>
+    </div>
+  </div>
+</div>
